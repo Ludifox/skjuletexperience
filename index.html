@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historier fra sofaen - en interaktiv reise med historier fra sofaen</title>
+    <link href="sofahistorier.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="snakeAnim.js"></script>
+</head>
+<body>
+    <img id="logo" src="img/GiS_logo_white.svg" />
+    <header>
+        <section>
+            <h1>Velkommen til en musikalsk reise...</h1>
+            <a href="#introduction" id="introbutton"><img src="img/planeicon.png" alt="Start reisen" />Start</a>
+        </section>
+    </header>
+    
+    <!--section class="scrollcontainer" id="storyContainer">
+        <article class="scrollBox"><h2>scrolltext</h2><p>Dette er en testscroll</p></article>
+        <article class="scrollBox"><h2>scrolltext</h2><p>Dette er en testscroll</p></article>
+        <article class="scrollBox"><h2>scrolltext</h2><p>Dette er en testscroll</p></article>
+        <article class="scrollBox"><h2>scrolltext</h2><p>Dette er en testscroll</p></article>
+        <article class="scrollBox"><h2>scrolltext</h2><p>Dette er en testscroll</p></article>
+        <article class="scrollBox"><h2>scrolltext</h2><p>Dette er en testscroll</p></article>
+        <article class="scrollBox"><h2>scrolltext</h2><p>Dette er en testscroll</p></article>
+        <article class="scrollBox"><h2>scrolltext</h2><p>Dette er en testscroll</p></article>
+    </section-->
+    <section id="mapStory">
+        <section id="storyContainer" class="scrollcontainer">
+            <article class="scrollBox" id="halden">
+                <h2>Halden</h2>
+                <p>Du har nå fått billett til en reise med Skjulets første album, hvor Egil og Marius har fablet seg gjennom Europa og Amerika.</p>
+                <p>Historiene har ikke rot i virkeligheten, de er rot i virkeligheten. Gjennom en reise i både tid og rom har Egil og Marius både opplevd - og startet - viktige hendelser i verdenshistorien!</p>
+                <p>Så spenn fast setebeltet og scroll nedover for en online musikalsk eventyrfortelling...</p>
+            </article>
+            <article class="scrollBox" id="cuba">
+                <h2>Halden > Cuba</h2>
+            </article>
+            <article class="scrollBox" id="amsterdam">
+                <h2>Cuba > Amsterdam</h2>
+            </article>
+            <article class="scrollBox" id="mexico">
+                <h2>Amsterdam > Acapulco</h2>
+            </article>
+            <article class="scrollBox" id="summary">
+                <h2>Sofareisen i tall:</h2>
+                <ul>
+                    <li>X antall land besøkt</li>
+                    <li>X antall byer bevandret</li>
+                    <li>X antall kriminelle handlinger begått</li>
+                    <li>X antall historiske begivenheter startet</li>
+                    <li>X antall historiske begivenheter stoppet</li>
+                    <li>X antall kilometer reist
+                        <ul>
+                            <li>På land: </li>
+                            <li>Til vanns: </li>
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+        </section>
+        <section id="mapContainer"></section>
+    </section-->
+    <script>
+        
+
+        //DATASET
+        const journeydata = [
+            {
+                city: "Halden", 
+                country: "Norge", 
+                lat: 59.0688, 
+                long: 11.4320, 
+                icon: L.icon({
+                    iconUrl: 'img/icons/home-address-100.png',
+                    iconSize: [100,100],
+                    iconAnchor: [90,50],
+                    popupAnchor: [0, -20]
+                })
+            },
+            {
+                city: "Sagua la Grande", 
+                country: "Cuba", 
+                lat: 22.9119, 
+                long: -80.0723, 
+                icon: L.icon({
+                    iconUrl: 'img/icons/explosion-100.png',
+                    iconSize: [100,100],
+                    iconAnchor: [90,50],
+                    popupAnchor: [0, -20]
+                })
+            },
+            {
+                city: "Amsterdam", 
+                country: "Nederland", 
+                lat: 52.3547, 
+                long: 4.9040, 
+                icon: L.icon({
+                    iconUrl: 'img/icons/sex-worker-100.png',
+                    iconSize: [100,100],
+                    iconAnchor: [90,50],
+                    popupAnchor: [0, -20]
+                })
+            },
+            {
+                city: "Ciudad Juarez", 
+                country: "Mexico", 
+                lat: 31.7374, 
+                long: -106.4857, 
+                icon: L.icon({
+                    iconUrl: 'img/icons/bus-100.png',
+                    iconSize: [100,100],
+                    iconAnchor: [90,50],
+                    popupAnchor: [0, -20]
+                })
+            }
+        ]
+        //INITIATE MAP
+        let map = L.map('mapContainer', {
+            center: [journeydata[0].lat, journeydata[0].long],
+            zoom: 4,
+            scrollWheelZoom: false
+        })
+        //SET MAP CONSTRUCTOR
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 25,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        //SET INITAL MARKER
+        const haldenMarker = L.marker([journeydata[0].lat, journeydata[0].long], {icon: journeydata[0].icon}).bindPopup("Halden").addTo(map)
+
+        //FUNCTION TO ADD TRAVEL ROUTES
+        function travel(index) {
+            const from = journeydata[index - 1]
+            const to = journeydata[index]
+            const pathstyle = {color: '#1A6383', weight: '2',  dashArray: '5, 5', dashOffset: '5'}
+
+            L.marker([to.lat, to.long], {icon: to.icon}).addTo(map)
+            
+
+            let srcLatRad = from.lat  * (Math.PI / 180);
+            let dstLatRad = to.lat  * (Math.PI / 180);
+            let middleLatRad = Math.atan(Math.sinh(Math.log(Math.sqrt(
+            (Math.tan(dstLatRad)+1/Math.cos(dstLatRad))*(Math.tan(srcLatRad)+1/Math.cos(srcLatRad))))));
+            let middleLat = middleLatRad * (180 / Math.PI)
+            let middleLong = (from.long + to.long) / 2;
+
+            map.flyTo([to.lat, to.long], 5)
+            L.polyline([[from.lat, from.long],[to.lat, to.long]], pathstyle, {snakingSpeed: 1500}).addTo(map).snakeIn()
+        }
+
+        //Function to check if element is in viewport
+        function isInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                (rect.top <= 0 && rect.bottom >= 0) || 
+                (rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth))
+            );
+        }
+
+        //SCRIPT FOR CHANGING MAP LOCATION
+        document.addEventListener('scroll', function () {
+            if(isInViewport(document.getElementById("cuba"))) {
+                travel(1)
+            }
+            if(isInViewport(document.getElementById("amsterdam"))) {
+                travel(2)
+            }
+            if(isInViewport(document.getElementById("mexico"))) {
+                travel(3)
+            }
+            if(isInViewport(document.getElementById("r1000t"))) {
+                map.flyTo([59.1258, 11.4450], 17)
+            }
+            if(isInViewport(document.getElementById("r1000br"))) {
+                map.flyTo([59.1291, 11.3796], 17)
+            }
+            if(isInViewport(document.getElementById("r1000r"))) {
+                map.flyTo([59.1186, 11.4092], 17)
+            }
+            if(isInViewport(document.getElementById("start"))) {
+                map.flyTo([centerLat, centerLong], 13)
+            }
+        }, {
+            passive: true
+        });
+    </script>
+</body>
+</html>
