@@ -16,7 +16,7 @@
     <header>
         <section>
             <h1>Velkommen til en musikalsk reise...</h1>
-            <a href="#introduction" id="introbutton"><img src="img/planeicon.png" alt="Start reisen" />Start</a>
+            <a href="#mapStory" id="introbutton"><img src="img/planeicon.png" alt="Start reisen" />Start</a>
         </section>
     </header>
     
@@ -47,6 +47,15 @@
             <article class="scrollBox" id="mexico">
                 <h2>Amsterdam > Acapulco</h2>
             </article>
+            <article class="scrollBox" id="favela">
+                <h2>Acapulco > Favela</h2>
+            </article>
+            <article class="scrollBox" id="berlin">
+                <h2>Favela > Berlin</h2>
+            </article>
+            <article class="scrollBox" id="bucuresti">
+                <h2>Berlin > Bucuresti</h2>
+            </article>
             <article class="scrollBox" id="summary">
                 <h2>Sofareisen i tall:</h2>
                 <ul>
@@ -74,13 +83,13 @@
             {
                 city: "Halden", 
                 country: "Norge", 
-                lat: 59.0688, 
-                long: 11.4320, 
+                lat: 59.1246, 
+                long: 11.3877, 
                 icon: L.icon({
-                    iconUrl: 'img/icons/home-address-100.png',
-                    iconSize: [100,100],
-                    iconAnchor: [90,50],
-                    popupAnchor: [0, -20]
+                    iconUrl: 'img/icons/home-address-50.png',
+                    iconSize: [50,50],
+                    iconAnchor: [0,0],
+                    popupAnchor: [0,0]
                 })
             },
             {
@@ -89,8 +98,8 @@
                 lat: 22.9119, 
                 long: -80.0723, 
                 icon: L.icon({
-                    iconUrl: 'img/icons/explosion-100.png',
-                    iconSize: [100,100],
+                    iconUrl: 'img/icons/explosion-50.png',
+                    iconSize: [50,50],
                     iconAnchor: [90,50],
                     popupAnchor: [0, -20]
                 })
@@ -101,8 +110,8 @@
                 lat: 52.3547, 
                 long: 4.9040, 
                 icon: L.icon({
-                    iconUrl: 'img/icons/sex-worker-100.png',
-                    iconSize: [100,100],
+                    iconUrl: 'img/icons/sex-worker-50.png',
+                    iconSize: [50,50],
                     iconAnchor: [90,50],
                     popupAnchor: [0, -20]
                 })
@@ -113,8 +122,56 @@
                 lat: 31.7374, 
                 long: -106.4857, 
                 icon: L.icon({
-                    iconUrl: 'img/icons/bus-100.png',
-                    iconSize: [100,100],
+                    iconUrl: 'img/icons/bribery-50.png',
+                    iconSize: [50,50],
+                    iconAnchor: [90,50],
+                    popupAnchor: [0, -20]
+                })
+            },
+            {
+                city: "Favela, Ciudad de Mexico", 
+                country: "Mexico", 
+                lat: 19.3568, 
+                long: -99.2097, 
+                icon: L.icon({
+                    iconUrl: 'img/icons/moonshine-jug-50.png',
+                    iconSize: [50,50],
+                    iconAnchor: [90,50],
+                    popupAnchor: [0, -20]
+                })
+            },
+            {
+                city: "Berlin", 
+                country: "Tyskland", 
+                lat: 52.5072, 
+                long: 13.4248, 
+                icon: L.icon({
+                    iconUrl: 'img/icons/suitcase-50.png',
+                    iconSize: [50,50],
+                    iconAnchor: [90,50],
+                    popupAnchor: [0, -20]
+                })
+            },
+            {
+                city: "Bucuresti", 
+                country: "Romania", 
+                lat: 44.4379, 
+                long: 26.0961, 
+                icon: L.icon({
+                    iconUrl: 'img/icons/error-50.png',
+                    iconSize: [50,50],
+                    iconAnchor: [90,50],
+                    popupAnchor: [0, -20]
+                })
+            },
+            {
+                city: "Transylvania", 
+                country: "Romania", 
+                lat: 46.5971, 
+                long: 24.3740, 
+                icon: L.icon({
+                    iconUrl: 'img/icons/theme-park-50.png',
+                    iconSize: [50,50],
                     iconAnchor: [90,50],
                     popupAnchor: [0, -20]
                 })
@@ -150,7 +207,7 @@
             let middleLat = middleLatRad * (180 / Math.PI)
             let middleLong = (from.long + to.long) / 2;
 
-            map.flyTo([to.lat, to.long], 5)
+            map.flyTo([to.lat, to.long], 4)
             L.polyline([[from.lat, from.long],[to.lat, to.long]], pathstyle, {snakingSpeed: 1500}).addTo(map).snakeIn()
         }
 
@@ -177,14 +234,14 @@
             if(isInViewport(document.getElementById("mexico"))) {
                 travel(3)
             }
-            if(isInViewport(document.getElementById("r1000t"))) {
-                map.flyTo([59.1258, 11.4450], 17)
+            if(isInViewport(document.getElementById("favela"))) {
+                travel(4)
             }
-            if(isInViewport(document.getElementById("r1000br"))) {
-                map.flyTo([59.1291, 11.3796], 17)
+            if(isInViewport(document.getElementById("berlin"))) {
+                travel(5)
             }
-            if(isInViewport(document.getElementById("r1000r"))) {
-                map.flyTo([59.1186, 11.4092], 17)
+            if(isInViewport(document.getElementById("bucuresti"))) {
+                travel(6)
             }
             if(isInViewport(document.getElementById("start"))) {
                 map.flyTo([centerLat, centerLong], 13)
