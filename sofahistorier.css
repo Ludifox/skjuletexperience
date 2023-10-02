@@ -7,7 +7,6 @@
     --dark: #464A55;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
@@ -152,9 +151,46 @@ header section {
 }
 #storyContainer {
     width: 30vw;
-    background-image: url("img/kit.jpg");
+    background-image: url("img/revolution9.jpg");
     background-size: cover;
     background-position: top left;
     background-attachment: fixed;
     background-color: var(--white);
 }
+
+.scrollBox h2 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    line-height: .5;
+    gap: .5rem;
+}
+.scrollBox h2 span {
+    display: block;
+}
+.from-place {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Love Ya Like A Sister', cursive;
+    line-height: 1.26;
+}
+.from-country {
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+.arrow {
+    font-size: 1rem;
+}
+.to-place {
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: 'Love Ya Like A Sister', cursive;
+    clear: both;
+    line-height: 1.6;
+}
+.to-country {
+    font-size: .9rem;
+    font-weight: normal;
+}
+.from-place, .from-country { color: var(--dark); opacity: .8 }
+.to-place, .to-country { color: var(--blue); }
