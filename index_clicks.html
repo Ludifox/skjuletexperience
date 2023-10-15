@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historier fra sofaen - en interaktiv reise med historier fra sofaen</title>
-    <link href="sofahistorier.css" rel="stylesheet" media="all">
+    <link href="sofahistorier_click.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="leaflet/leaflet.css" />
     <script src="leaflet/leaflet.js"></script>
     <script src="snakeAnim.js"></script>
@@ -19,13 +19,7 @@
     </header>
     <section id="mapStory">
         <section id="storyContainer" class="scrollcontainer">
-            <article class="scrollBox" id="start">
-                <h2>Halden</h2>
-                <p>Du har nå fått billett til en reise med Skjulets første album, hvor Egil og Marius har fablet seg gjennom Europa og Amerika.</p>
-                <p>Historiene har ikke rot i virkeligheten, de er rot i virkeligheten. Gjennom en reise i både tid og rom har Egil og Marius både opplevd - og startet - viktige hendelser i verdenshistorien!</p>
-                <p>Så spenn fast setebeltet og scroll nedover for en online musikalsk eventyrfortelling...</p>
-            </article>
-            <article class="scrollBox" id="cuba">
+            <article id="infoBox">
                 <h2>
                     <span class="from">
                         <span class="from-place">Halden</span>
@@ -33,187 +27,27 @@
                     </span>
                     <span class="arrow">&gt;</span>
                     <span class="to">
-                        <span class="to-place">Sagua la Grande</span>
-                        <span class="to-country">Cuba</span>
+                        <span class="to-place">Cuba</span>
+                        <span class="to-country">Karibia</span>
                     </span>
                 </h2>
-            </article>
-            <article class="scrollBox" id="amsterdam">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Sagua la Grande</span>
-                        <span class="from-country">Cuba</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Amsterdam</span>
-                        <span class="to-country">Nederland</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="acapulco">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Amsterdam</span>
-                        <span class="from-country">Nederland</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Acapulco</span>
-                        <span class="to-country">Mexico</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="mexico">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Acapulco</span>
-                        <span class="from-country">Mexico</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Rio Grande</span>
-                        <span class="to-country">Mexico</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="favela">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Rio Grande</span>
-                        <span class="from-country">Mexico</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Favela</span>
-                        <span class="to-country">Mexico</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="berlin">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Favela</span>
-                        <span class="from-country">Mexico</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Berlin</span>
-                        <span class="to-country">Tyskland</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="bucuresti">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Berlin</span>
-                        <span class="from-country">Tyskland</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Bucuresti</span>
-                        <span class="to-country">Romania</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="transylvania">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Bucuresti</span>
-                        <span class="from-country">Romania</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Transylvania</span>
-                        <span class="to-country">Romania</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="bagdad">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Transylvania</span>
-                        <span class="from-country">Romania</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Bagdad</span>
-                        <span class="to-country">Irak</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="telemark">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Bagdad</span>
-                        <span class="from-country">Irak</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Telemark</span>
-                        <span class="to-country">Norge</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="fandenivold">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Telemark</span>
-                        <span class="from-country">Norge</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Fandenivold</span>
-                        <span class="to-country">Tyskland</span>
-                    </span>
-                </h2>
-                <p>Hvor er egentlig fandenivold? Hvis vi tolker å dra fandenivold som langt av sted, antagelig til et sted fanden regjerer, og fanden fra gammelt av ble kalt Gammel-Erik av Ludvig Holberg, kan vi lese at Gammel-Erik var hersker av Blokksberg, Heckenfield og Lyderhorn... så, for kartet sin del, valgte vi Blokksberg (som ligger i Brocken, Tyskland).</p>
-            </article>
-            <article class="scrollBox" id="orebro">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Fandenivold</span>
-                        <span class="from-country">Tyskland</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Örebro</span>
-                        <span class="to-country">Sverige</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="halden">
-                <h2>
-                    <span class="from">
-                        <span class="from-place">Örebro</span>
-                        <span class="from-country">Sverige</span>
-                    </span>
-                    <span class="arrow">&gt;</span>
-                    <span class="to">
-                        <span class="to-place">Halden</span>
-                        <span class="to-country">Norge</span>
-                    </span>
-                </h2>
-            </article>
-            <article class="scrollBox" id="summary">
-                <h2>Sofareisen i tall:</h2>
-                <ul>
-                    <li><span class="statnumber">8</span> antall land besøkt</li>
-                    <li>Begått <span class="statnumber">7</span> kriminelle handlinger</li>
-                    <li>Involvert i <span class="statnumber">6</span> verdenshistoriske begivenheter</li>
-                    <li><span class="statnumber">X</span> antall kilometer reist
-                        <ul>
-                            <li>På land: <span class="statnumber">8</span></li>
-                            <li>Til vanns: <span class="statnumber">8</span></li>
-                        </ul>
-                    </li>
-                </ul>
+                <p>Du har nå fått billett til en reise med Skjulets første album, hvor Egil og Marius har fablet seg gjennom Europa og
+                    Amerika.</p>
+                <p>Historiene har ikke rot i virkeligheten, de er rot i virkeligheten. Gjennom en reise i både tid og rom har Egil og
+                    Marius både opplevd - og startet - viktige hendelser i verdenshistorien!</p>
+                <p>Så spenn fast setebeltet og scroll nedover for en online musikalsk eventyrfortelling...</p>
+                <nav id="infoBoxNav">
+                    <button id="previous">Forrige</button>
+                    <button id="next">Neste</button>
+                </nav>
             </article>
         </section>
         <section id="mapContainer"></section>
     </section-->
     <script>
-        
+        if(global === undefined) {
+            var global = window;
+        }
 
         //DATASET
         const journeydata = [
@@ -429,6 +263,43 @@
         //SET INITAL MARKER
         const haldenMarker = L.marker([journeydata[0].lat, journeydata[0].long], {icon: journeydata[0].icon}).bindPopup("Halden").addTo(map)
 
+        let currentIndex = 0;
+
+        //Load info
+        function loadInfo(index) {
+            const prev = index -1
+            const next = index + 1
+
+            const h2structure = `<span class="from">
+                            <span class="from-place">${journeydata[prev].city}</span>
+                            <span class="from-country">${journeydata[prev].country}</span>
+                        </span>
+                        <span class="arrow">&gt;</span>
+                        <span class="to">
+                            <span class="to-place">${journeydata[index].city}</span>
+                            <span class="to-country">${journeydata[index].city}</span>
+                        </span>`
+            const h2elem = document.querySelector("#infoBox h2")
+            h2elem.innerHTML = h2structure
+
+            //buttons
+            document.getElementById("previous").innerHTML = `<span class="from-country">Forrige</span>
+            <span class="from-place">${journeydata[prev].city}</span>
+                            <span class="from-country">${journeydata[prev].country}</span>`
+            document.getElementById("next").innerHTML = `<span class="to-country">Neste</span>
+            <span class="to-place">${journeydata[next].city}</span>
+                            <span class="to-country">${journeydata[next].country}</span>`
+        }
+        
+        //Feel the click
+        document.addEventListener("click", function(event) {
+            if(event.target.id === "next") {
+                currentIndex++
+                travel(currentIndex)
+                loadInfo(currentIndex)
+            }
+        })
+
         //FUNCTION TO ADD TRAVEL ROUTES
         function travel(index) {
             const from = journeydata[index - 1]
@@ -466,6 +337,8 @@
                 rect.right <= (window.innerWidth || document.documentElement.clientWidth))
             );
         }
+
+        loadInfo(currentIndex)
 
         //SCRIPT FOR CHANGING MAP LOCATION
         document.addEventListener('scroll', function () {
